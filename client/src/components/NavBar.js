@@ -41,6 +41,14 @@ const NavBar = () => {
                 Create Blog
               </Link>
             </div>
+            <div className="navbar-nav ms-auto">
+              <Link to="/signin" className="nav-link">
+                Signin
+              </Link>
+              <Link to="/signup" className="nav-link">
+                Signup
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
