@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const url = process.env.URL
+const mongoose = require('mongoose');
+const url = process.env.MONGODB_URL;
 
 const connectDB = () => {
     mongoose.connect(url, {
@@ -7,7 +7,7 @@ const connectDB = () => {
         useNewUrlParser: true,
         useFindAndModify: false
     })
-    console.log('DB connected..!')
+    console.log('DB connected..!');
 }
 
-module.exports = connectDB
+module.exports = connectDB;

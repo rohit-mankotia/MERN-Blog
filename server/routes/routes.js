@@ -1,9 +1,12 @@
-const Routes = require('./index')
-const express = require('express')
+const express = require('express');
 
-const router = express.Router()
+const Routes = require('./index');
 
-router.use('/', Routes.User)
-router.use('/admin', Routes.Admin) 
+const router = express.Router();
 
-module.exports = router
+const { Admin, Blog } = Routes;
+
+router.use('/', Blog);
+router.use('/admin', Admin);
+
+module.exports = router;
