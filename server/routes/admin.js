@@ -1,9 +1,13 @@
-const express = require('express')
-const router = express.Router()
-const Controller = require('../controller/index')
-const auth = require('../auth/auth')
-const multer = require('multer')
+const express = require('express');
+const multer = require('multer');
 
+const auth = require('../auth/auth');
+const Controller = require('../controller');
+
+const { Admin } = Controller;
+const { signup, signin, createBlog, allBlogs, searchByCategory, editBlog } = Admin;
+
+const router = express.Router();
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './uploads')
@@ -11,15 +15,15 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         cb(null, Date.now() + '-' + file.originalname)
     }
-})
+});
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage });
 
-router.post('/signup', Controller.Admin.signup)
-router.post('/signin', Controller.Admin.signin)
-router.post('/createBlog', auth, upload.single('picture'), Controller.Admin.createBlog)
-router.get('/allBlogs', auth, Controller.Admin.allBlogs)
-router.get('/searchByCategory/:category', auth, Controller.Admin.searchByCategory)
-router.post('/editBlog/:id', auth, upload.single('picture'), Controller.Admin.editBlog)
+router.post('/signup', signup);
+router.post('/signin', signin);
+router.post('/createBlog', auth, upload.single('picture'), createBlog);
+router.get('/allBlogs', auth, allBlogs);
+router.get('/searchByCategory/:category', auth, searchByCategory);
+router.post('/editBlog/:id', auth, upload.single('picture'), editBlog);
 
-module.exports = router
+module.exports = router;
